@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'mco_env'
+
+environments = McoEnv::Utils.all_environments.sort
+
+active_environment = McoEnv::Utils.active_environment
+
+environments.each do |environment|
+  puts format(' %c %s', (environment == active_environment) ? '*' : ' ', environment)
+end

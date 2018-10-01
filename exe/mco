@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'mco_env'
+
+mco = McoEnv::Wrapper.new
+exit(mco.run(ARGV))
