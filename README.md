@@ -1,28 +1,34 @@
-# McoEnv
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mco_env`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# mcoenv
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'mco_env'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install mco_env
 
 ## Usage
 
-TODO: Write usage instructions here
+Create any number of `~/.mcollective-*` directories with the appropriate configuration for your environments.
+
+List configured environments:
+
+    $ mcoenv
+       bar
+       baz
+       foo
+     * system
+
+Change local environment (creates a `.mco-environment` file in the current directory):
+
+    $ mcoenv local foo
+    $ mcoenv
+       bar
+       baz
+     * foo
+       system
+
+Then run Marionette Collective commands:
+
+    $ mco ping                            # `mco ping --config ~/.mcollective-foo/client.cfg`
+    $ mco rpc service status service=sshd # `mco rpc --config ~/.mcollective-foo/client.cfg service status service=sshd`
 
 ## Development
 
