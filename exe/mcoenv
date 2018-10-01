@@ -6,6 +6,26 @@ environments = McoEnv::Utils.all_environments.sort
 
 active_environment = McoEnv::Utils.active_environment
 
-environments.each do |environment|
-  puts format(' %c %s', (environment == active_environment) ? '*' : ' ', environment)
+def usage
+  $stderr.puts <<~DOC
+    usage:
+        mcoenv
+        mcoenv local <environment>
+    DOC
+  exit(1)
+end
+
+if ARGV.empty?
+  environments.each do |environment|
+    puts format(' %c %s', (environment == active_environment) ? '*' : ' ', environment)
+  end
+else
+  case ARGV.shift
+  when 'local'
+    File.open('.mco-environment', 'w') do |f|
+      f.puts ARGV[0]
+    end
+  else
+    usage
+  end
 end
