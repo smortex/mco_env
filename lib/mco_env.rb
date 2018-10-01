@@ -25,19 +25,30 @@ module McoEnv
   class Wrapper
     def initialize(environment = nil)
       @environment = environment || McoEnv::Utils.active_environment
-        raise 'no mco environment configured here (or in any of the parent directories): .mco-environment' unless @environment
     end
 
     def run(args)
-      action = args.shift
-      system('/usr/local/bin/mco', action, '--config', config_path, *args)
+      command = []
+      command << mco_path
+      command << args.shift
+      command += ['--config', config_path] if has_config?
+      command += args
+      system(*command)
       $?.exitstatus
     end
 
     private
 
+    def mco_path
+      '/usr/local/bin/mco'
+    end
+
     def config_path
       File.join(ENV['HOME'], ".mcollective-#{@environment}", 'client.cfg')
+    end
+
+    def has_config?
+      @environment
     end
   end
 end
