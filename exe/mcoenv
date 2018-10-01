@@ -19,6 +19,7 @@ if ARGV.empty?
   environments.each do |environment|
     puts format(' %c %s', (environment == active_environment) ? '*' : ' ', environment)
   end
+  puts format(' %c %s', (active_environment.nil?) ? '*' : ' ', 'system')
 else
   case ARGV.shift
   when 'local'
