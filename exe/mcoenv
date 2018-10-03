@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
 require 'mco_env'
 
 environments = McoEnv::Utils.all_environments.sort
@@ -23,8 +24,14 @@ if ARGV.empty?
 else
   case ARGV.shift
   when 'local'
+    if ARGV[0] == 'system'
+      FileUtils.rm_f('.mco-environment')
+    elsif environments.include?(ARGV[0])
     File.open('.mco-environment', 'w') do |f|
       f.puts ARGV[0]
+    end
+    else
+      raise "Unknown environment #{ARGV[0]}"
     end
   else
     usage
