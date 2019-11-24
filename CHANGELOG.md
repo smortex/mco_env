@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.1] - 2019-11-23
 ### Fixed
 
 - Fix CI (use bundler 2.0).
@@ -18,5 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Do not raise an exception when no argument is passed to the `mco(1)` wrapper.
 
-[Unreleased]: https://github.com/smortex/mco_env/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/smortex/mco_env/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/smortex/mco_env/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/smortex/mco_env/compare/v1.0.0...v1.1.0
