@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+
+- Sort environments in alphabetic order in `mcoenv(1)` output.
+
 ### Fixed
 
 - Do not raise an exception when no argument is passed to the `mco(1)` wrapper.

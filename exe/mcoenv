@@ -18,10 +18,12 @@ def usage
 end
 
 if ARGV.empty?
+  lister = McoEnv::Lister.new
+  lister.add('system', active_environment.nil?)
   environments.each do |environment|
-    puts format(' %<active>c %<environment>s', active: environment == active_environment ? '*' : ' ', environment: environment)
+    lister.add(environment, environment == active_environment)
   end
-  puts format(' %<active>c %<environment>s', active: active_environment.nil? ? '*' : ' ', environment: 'system')
+  lister.print
 else
   case ARGV.shift
   when 'local'

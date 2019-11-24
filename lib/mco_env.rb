@@ -54,4 +54,21 @@ module McoEnv
       @environment
     end
   end
+
+  class Lister
+    def initialize
+      @environments = []
+    end
+
+    def add(environment, active)
+      @environments << { environment: environment, active: active }
+    end
+
+    def print
+      @environments
+        .sort_by { |environment| environment[:environment] }
+        .map     { |environment| environment[:active] = environment[:active] ? '*' : ' '; environment }
+        .each    { |environment| puts format(' %<active>c %<environment>s', environment) }
+    end
+  end
 end
