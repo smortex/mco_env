@@ -28,9 +28,11 @@ module McoEnv
     end
 
     def run(args)
+      action = args.shift
+
       command = []
       command << mco_path
-      command << args.shift
+      command << action unless action.nil?
       command += ['--config', config_path] if has_config?
       command += args
       system(*command)
