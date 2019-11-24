@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'fileutils'
 require 'mco_env'
@@ -8,28 +9,28 @@ environments = McoEnv::Utils.all_environments.sort
 active_environment = McoEnv::Utils.active_environment
 
 def usage
-  $stderr.puts <<~DOC
+  warn <<~DOC
     usage:
         mcoenv
         mcoenv local <environment>
-    DOC
+  DOC
   exit(1)
 end
 
 if ARGV.empty?
   environments.each do |environment|
-    puts format(' %c %s', (environment == active_environment) ? '*' : ' ', environment)
+    puts format(' %<active>c %<environment>s', active: environment == active_environment ? '*' : ' ', environment: environment)
   end
-  puts format(' %c %s', (active_environment.nil?) ? '*' : ' ', 'system')
+  puts format(' %<active>c %<environment>s', active: active_environment.nil? ? '*' : ' ', environment: 'system')
 else
   case ARGV.shift
   when 'local'
     if ARGV[0] == 'system'
       FileUtils.rm_f('.mco-environment')
     elsif environments.include?(ARGV[0])
-    File.open('.mco-environment', 'w') do |f|
-      f.puts ARGV[0]
-    end
+      File.open('.mco-environment', 'w') do |f|
+        f.puts ARGV[0]
+      end
     else
       raise "Unknown environment #{ARGV[0]}"
     end

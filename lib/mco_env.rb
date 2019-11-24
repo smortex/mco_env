@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module McoEnv
   module Utils
     def self.all_environments
@@ -8,18 +10,17 @@ module McoEnv
 
     def self.active_environment
       dir = Dir.getwd.split('/')
-      
+
       loop do
         return nil if dir.empty?
 
         break if File.exist?(File.join(dir, '.mco-environment'))
-      
+
         dir.pop
       end
 
       File.readlines(File.join(dir, '.mco-environment'))[0].chomp
     end
-
   end
 
   class Wrapper
@@ -33,10 +34,10 @@ module McoEnv
       command = []
       command << mco_path
       command << action unless action.nil?
-      command += ['--config', config_path] if has_config?
+      command += ['--config', config_path] if config_path?
       command += args
       system(*command)
-      $?.exitstatus
+      $CHILD_STATUS.exitstatus
     end
 
     private
@@ -49,7 +50,7 @@ module McoEnv
       File.join(ENV['HOME'], ".mcollective-#{@environment}", 'client.cfg')
     end
 
-    def has_config?
+    def config_path?
       @environment
     end
   end
