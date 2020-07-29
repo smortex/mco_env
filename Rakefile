@@ -13,5 +13,5 @@ GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   config.user = 'smortex'
   config.project = 'mco_env'
   config.since_tag = '1.0.0'
-  config.future_release = '1.2.0'
+  config.future_release = McoEnv::VERSION
 end
