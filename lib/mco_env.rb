@@ -29,13 +29,10 @@ module McoEnv
     end
 
     def run(args)
-      action = args.shift
-
       command = []
       command << mco_path
-      command << action unless action.nil?
-      command += ['--config', config_path] if config_path?
       command += args
+      command += ['--config', config_path] if config_path?
       system(*command)
       $CHILD_STATUS.exitstatus
     end
