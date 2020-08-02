@@ -1,6 +1,14 @@
 # Changelog
 
-## [1.2.0](https://github.com/smortex/mco_env/tree/1.2.0) (2020-07-28)
+## [1.2.1](https://github.com/smortex/mco_env/tree/1.2.1) (2020-08-01)
+
+[Full Changelog](https://github.com/smortex/mco_env/compare/1.2.0...1.2.1)
+
+**Merged pull requests:**
+
+- Fix exit status [\#4](https://github.com/smortex/mco_env/pull/4) ([smortex](https://github.com/smortex))
+
+## [1.2.0](https://github.com/smortex/mco_env/tree/1.2.0) (2020-07-29)
 
 [Full Changelog](https://github.com/smortex/mco_env/compare/1.1.1...1.2.0)
 
