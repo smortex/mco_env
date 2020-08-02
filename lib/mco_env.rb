@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'English'
+
 module McoEnv
   module Utils
     def self.all_environments
